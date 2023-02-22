@@ -139,14 +139,14 @@ async function main() {
         10. exit
         `)
         if (choose == 1) {
-            let adr  = readline.question("enter _x: ");
-            let num  = readline.question("enter _y: ");
-            await myContract.methods.callAddition(adr, [num, _str])
-            .call()
-            // .send({ from: account.address })
-            // .on('receipt', (receipt) => {
-            //     console.log(receipt);
-            // })
+            let _x  = readline.question("enter _x: ");
+            let _y  = readline.question("enter _y: ");
+            await myContract.methods.callAddition(_x, _y)
+            //
+            .send({ from: account.address })
+            .on('receipt', (receipt) => {
+                console.log(receipt);
+            })
             .then(console.log)
         } else if (choose == 2) {
             await myContract.methods.callAdr()
@@ -167,24 +167,37 @@ async function main() {
         } else if (choose == 5) {
             let index  = readline.question("enter index: ");
             await myContract.methods.callData(index)
-            .call()
-            // этот метод не работает, но должен вроде как
-            // .send({ from: account.address })
-            // .on('receipt', (receipt) => {
-            //     console.log(receipt);
-            // })
+            //.call()
+            .send({ from: account.address })
+            .on('receipt', (receipt) => {
+                console.log(receipt);
+            })
             .then(console.log)       
         } else if (choose == 6) {
-            await myContract.methods.callGetAddress().call().then(console.log)
+            await myContract.methods.callGetAddress()
+            .call()
+            .then(console.log)
         } else if (choose == 7) {
             let _adr  = readline.question("enter address: ");
-            await myContract.methods.callSetAddress(_adr).call().then(console.log)
+            await myContract.methods.callSetAddress(_adr)
+            .send({ from: account.address })
+            .on('receipt', (receipt) => {
+                console.log(receipt);
+            })
+            .then(console.log)
         } else if (choose == 8) {
             let _balance  = readline.question("enter balance: ");
             let _text  = readline.question("enter _text: ");
-            await myContract.methods.callSetValues(_balance, _text).call().then(console.log)
+            await myContract.methods.callSetValues(_balance, _text)
+            .send({ from: account.address })
+            .on('receipt', (receipt) => {
+                console.log(receipt);
+            })
+            .then(console.log)
         } else if (choose == 9) {
-            await myContract.methods.callText().call().then(console.log)
+            await myContract.methods.callText()
+            .call()
+            .then(console.log)
         } else if (choose == 10) {
             break
         }
