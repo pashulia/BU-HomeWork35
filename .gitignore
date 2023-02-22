@@ -2,3 +2,5 @@
 /node_modules
 /contracts/Example.abi
 /contracts/Example.bin
+/contracts/Caller.abi
+/contracts/Caller.bin

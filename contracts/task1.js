@@ -144,6 +144,7 @@ async function main() {
             let _y  = readline.question("enter y: ");
             await myContract.methods.setXY(_x, _y)
             .call()
+            // этот метод не работает, но должен вроде как
             // .send({ from: account.address })
             // .on('receipt', (receipt) => {
             //     console.log(receipt);
